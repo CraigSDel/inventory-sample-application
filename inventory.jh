@@ -1,0 +1,76 @@
+// an ignored comment
+/** not an ignored comment */
+entity Country {
+	id String
+	countryName String,
+	dateAdded Instant,
+	lastModified Instant
+}
+
+entity Location {
+	id String
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String,
+	dateAdded Instant,
+	lastModified Instant
+}
+
+entity Farm {
+	id String
+	name String,
+    description String,
+	dateAdded Instant,
+	lastModified Instant
+}
+
+entity Breed {
+	id String,
+    description String,
+	dateAdded Instant,
+	lastModified Instant
+}
+
+entity SemenDonor {
+	id String,
+    description String,
+    producing Boolean,
+	dateAdded Instant,
+    lastModified Instant
+} 
+
+entity Semen {
+    id String,
+    description String,
+	receivedDate Instant,
+	status SemenStatus,
+	dateAdded Instant,
+    lastModified Instant
+}
+
+enum SemenStatus {
+	AVAILABLE, USED, ON_ROUTE
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	SemenDonor to Semen{semenDonor},
+	Farm to SemenDonor{farm},
+    Breed to SemenDonor{breed},
+    Location to Farm{location},
+    Country to Location{country}
+}
+
+// Set pagination options
+paginate Country, Location, Farm, SemenDonor, Semen with infinite-scroll
+// paginate Country, Location, Farm, SemenDonor, Semen with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
