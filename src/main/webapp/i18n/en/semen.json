@@ -1,0 +1,29 @@
+{
+  "inventorySampleApplicationApp": {
+    "semen": {
+      "home": {
+        "title": "Semen",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Semen",
+        "createOrEditLabel": "Create or edit a Semen",
+        "notFound": "No Semen found"
+      },
+      "created": "A new Semen is created with identifier {{ param }}",
+      "updated": "A Semen is updated with identifier {{ param }}",
+      "deleted": "A Semen is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Semen {{ id }}?"
+      },
+      "detail": {
+        "title": "Semen"
+      },
+      "id": "Id",
+      "description": "Description",
+      "receivedDate": "Received Date",
+      "status": "Status",
+      "dateAdded": "Date Added",
+      "lastModified": "Last Modified",
+      "semenDonor": "Semen Donor"
+    }
+  }
+}

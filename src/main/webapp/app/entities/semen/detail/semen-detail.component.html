@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="semen">
+      <h2 data-cy="semenDetailsHeading"><span jhiTranslate="inventorySampleApplicationApp.semen.detail.title">Semen</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.id">Id</span></dt>
+        <dd>
+          <span>{{ semen.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.description">Description</span></dt>
+        <dd>
+          <span>{{ semen.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.receivedDate">Received Date</span></dt>
+        <dd>
+          <span>{{ semen.receivedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'inventorySampleApplicationApp.SemenStatus.' + semen.status }}">{{ semen.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.dateAdded">Date Added</span></dt>
+        <dd>
+          <span>{{ semen.dateAdded | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ semen.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="inventorySampleApplicationApp.semen.semenDonor">Semen Donor</span></dt>
+        <dd>
+          <div *ngIf="semen.semenDonor">
+            <a [routerLink]="['/semen-donor', semen.semenDonor?.id, 'view']">{{ semen.semenDonor?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/semen', semen.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

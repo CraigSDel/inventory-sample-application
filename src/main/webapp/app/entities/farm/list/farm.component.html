@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="FarmHeading">
+    <span jhiTranslate="inventorySampleApplicationApp.farm.home.title">Farms</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventorySampleApplicationApp.farm.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-farm"
+        [routerLink]="['/farm/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventorySampleApplicationApp.farm.home.createLabel"> Create a new Farm </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="farms?.length === 0">
+    <span jhiTranslate="inventorySampleApplicationApp.farm.home.notFound">No farms found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="farms && farms.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="inventorySampleApplicationApp.farm.id">Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="inventorySampleApplicationApp.farm.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="inventorySampleApplicationApp.farm.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateAdded">
+            <span jhiTranslate="inventorySampleApplicationApp.farm.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="inventorySampleApplicationApp.farm.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="location.id">
+            <span jhiTranslate="inventorySampleApplicationApp.farm.location">Location</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let farm of farms; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/farm', farm.id, 'view']">{{ farm.id }}</a>
+          </td>
+          <td>{{ farm.name }}</td>
+          <td>{{ farm.description }}</td>
+          <td>{{ farm.dateAdded | formatMediumDatetime }}</td>
+          <td>{{ farm.lastModified | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="farm.location">
+              <a [routerLink]="['/location', farm.location?.id, 'view']">{{ farm.location?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/farm', farm.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/farm', farm.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(farm)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

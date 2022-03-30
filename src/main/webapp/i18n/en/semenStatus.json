@@ -1,0 +1,10 @@
+{
+  "inventorySampleApplicationApp": {
+    "SemenStatus": {
+      "null": "",
+      "AVAILABLE": "AVAILABLE",
+      "USED": "USED",
+      "ON_ROUTE": "ON_ROUTE"
+    }
+  }
+}

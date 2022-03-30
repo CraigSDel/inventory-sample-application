@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="SemenDonorHeading">
+    <span jhiTranslate="inventorySampleApplicationApp.semenDonor.home.title">Semen Donors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="inventorySampleApplicationApp.semenDonor.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-semen-donor"
+        [routerLink]="['/semen-donor/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="inventorySampleApplicationApp.semenDonor.home.createLabel"> Create a new Semen Donor </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="semenDonors?.length === 0">
+    <span jhiTranslate="inventorySampleApplicationApp.semenDonor.home.notFound">No semenDonors found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="semenDonors && semenDonors.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.id">Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="producing">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.producing">Producing</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateAdded">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="farm.id">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.farm">Farm</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="breed.id">
+            <span jhiTranslate="inventorySampleApplicationApp.semenDonor.breed">Breed</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let semenDonor of semenDonors; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/semen-donor', semenDonor.id, 'view']">{{ semenDonor.id }}</a>
+          </td>
+          <td>{{ semenDonor.description }}</td>
+          <td>{{ semenDonor.producing }}</td>
+          <td>{{ semenDonor.dateAdded | formatMediumDatetime }}</td>
+          <td>{{ semenDonor.lastModified | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="semenDonor.farm">
+              <a [routerLink]="['/farm', semenDonor.farm?.id, 'view']">{{ semenDonor.farm?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="semenDonor.breed">
+              <a [routerLink]="['/breed', semenDonor.breed?.id, 'view']">{{ semenDonor.breed?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/semen-donor', semenDonor.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/semen-donor', semenDonor.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(semenDonor)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

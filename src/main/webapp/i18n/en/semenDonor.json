@@ -1,0 +1,30 @@
+{
+  "inventorySampleApplicationApp": {
+    "semenDonor": {
+      "home": {
+        "title": "Semen Donors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Semen Donor",
+        "createOrEditLabel": "Create or edit a Semen Donor",
+        "notFound": "No Semen Donors found"
+      },
+      "created": "A new Semen Donor is created with identifier {{ param }}",
+      "updated": "A Semen Donor is updated with identifier {{ param }}",
+      "deleted": "A Semen Donor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Semen Donor {{ id }}?"
+      },
+      "detail": {
+        "title": "Semen Donor"
+      },
+      "id": "Id",
+      "description": "Description",
+      "producing": "Producing",
+      "dateAdded": "Date Added",
+      "lastModified": "Last Modified",
+      "semen": "Semen",
+      "farm": "Farm",
+      "breed": "Breed"
+    }
+  }
+}

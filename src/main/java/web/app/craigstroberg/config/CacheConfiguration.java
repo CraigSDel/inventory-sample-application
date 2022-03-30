@@ -48,6 +48,17 @@ public class CacheConfiguration {
             createCache(cm, web.app.craigstroberg.domain.User.class.getName());
             createCache(cm, web.app.craigstroberg.domain.Authority.class.getName());
             createCache(cm, web.app.craigstroberg.domain.User.class.getName() + ".authorities");
+            createCache(cm, web.app.craigstroberg.domain.Country.class.getName());
+            createCache(cm, web.app.craigstroberg.domain.Country.class.getName() + ".locations");
+            createCache(cm, web.app.craigstroberg.domain.Location.class.getName());
+            createCache(cm, web.app.craigstroberg.domain.Location.class.getName() + ".farms");
+            createCache(cm, web.app.craigstroberg.domain.Farm.class.getName());
+            createCache(cm, web.app.craigstroberg.domain.Farm.class.getName() + ".semenDonors");
+            createCache(cm, web.app.craigstroberg.domain.Breed.class.getName());
+            createCache(cm, web.app.craigstroberg.domain.Breed.class.getName() + ".semenDonors");
+            createCache(cm, web.app.craigstroberg.domain.SemenDonor.class.getName());
+            createCache(cm, web.app.craigstroberg.domain.SemenDonor.class.getName() + ".semen");
+            createCache(cm, web.app.craigstroberg.domain.Semen.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,134 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-semen-heading"
+        data-cy="SemenCreateUpdateHeading"
+        jhiTranslate="inventorySampleApplicationApp.semen.home.createOrEditLabel"
+      >
+        Create or edit a Semen
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.id" for="field_id">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="editForm.get('id')!.value != null"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.receivedDate" for="field_receivedDate"
+            >Received Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_receivedDate"
+              data-cy="receivedDate"
+              type="datetime-local"
+              class="form-control"
+              name="receivedDate"
+              formControlName="receivedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'inventorySampleApplicationApp.SemenStatus.null' | translate }}</option>
+            <option *ngFor="let semenStatus of semenStatusValues" [value]="semenStatus">
+              {{ 'inventorySampleApplicationApp.SemenStatus.' + semenStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.dateAdded" for="field_dateAdded">Date Added</label>
+          <div class="d-flex">
+            <input
+              id="field_dateAdded"
+              data-cy="dateAdded"
+              type="datetime-local"
+              class="form-control"
+              name="dateAdded"
+              formControlName="dateAdded"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.semen.semenDonor" for="field_semenDonor">Semen Donor</label>
+          <select class="form-control" id="field_semenDonor" data-cy="semenDonor" name="semenDonor" formControlName="semenDonor">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                semenDonorOption.id === editForm.get('semenDonor')!.value?.id ? editForm.get('semenDonor')!.value : semenDonorOption
+              "
+              *ngFor="let semenDonorOption of semenDonorsSharedCollection; trackBy: trackSemenDonorById"
+            >
+              {{ semenDonorOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
