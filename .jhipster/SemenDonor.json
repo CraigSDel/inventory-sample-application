@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20220330203303",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "semen_donor",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "producing",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SemenDonor",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "semen",
+      "otherEntityRelationshipName": "semenDonor",
+      "relationshipName": "semen",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "farm",
+      "otherEntityRelationshipName": "semenDonor",
+      "relationshipName": "farm",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "breed",
+      "otherEntityRelationshipName": "semenDonor",
+      "relationshipName": "breed",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

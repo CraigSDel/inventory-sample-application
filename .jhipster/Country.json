@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20220330203259",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "country",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "countryName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "not an ignored comment",
+  "jpaMetamodelFiltering": false,
+  "name": "Country",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "country",
+      "relationshipName": "location",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

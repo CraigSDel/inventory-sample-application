@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-farm-heading" data-cy="FarmCreateUpdateHeading" jhiTranslate="inventorySampleApplicationApp.farm.home.createOrEditLabel">
+        Create or edit a Farm
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.farm.id" for="field_id">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="editForm.get('id')!.value != null"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.farm.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.farm.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.farm.dateAdded" for="field_dateAdded">Date Added</label>
+          <div class="d-flex">
+            <input
+              id="field_dateAdded"
+              data-cy="dateAdded"
+              type="datetime-local"
+              class="form-control"
+              name="dateAdded"
+              formControlName="dateAdded"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.farm.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="inventorySampleApplicationApp.farm.location" for="field_location">Location</label>
+          <select class="form-control" id="field_location" data-cy="location" name="location" formControlName="location">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="locationOption.id === editForm.get('location')!.value?.id ? editForm.get('location')!.value : locationOption"
+              *ngFor="let locationOption of locationsSharedCollection; trackBy: trackLocationById"
+            >
+              {{ locationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

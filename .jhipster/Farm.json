@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20220330203301",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "farm",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Farm",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "semenDonor",
+      "otherEntityRelationshipName": "farm",
+      "relationshipName": "semenDonor",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "farm",
+      "relationshipName": "location",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

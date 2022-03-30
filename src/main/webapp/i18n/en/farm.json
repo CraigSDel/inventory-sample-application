@@ -1,0 +1,29 @@
+{
+  "inventorySampleApplicationApp": {
+    "farm": {
+      "home": {
+        "title": "Farms",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Farm",
+        "createOrEditLabel": "Create or edit a Farm",
+        "notFound": "No Farms found"
+      },
+      "created": "A new Farm is created with identifier {{ param }}",
+      "updated": "A Farm is updated with identifier {{ param }}",
+      "deleted": "A Farm is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Farm {{ id }}?"
+      },
+      "detail": {
+        "title": "Farm"
+      },
+      "id": "Id",
+      "name": "Name",
+      "description": "Description",
+      "dateAdded": "Date Added",
+      "lastModified": "Last Modified",
+      "semenDonor": "Semen Donor",
+      "location": "Location"
+    }
+  }
+}
