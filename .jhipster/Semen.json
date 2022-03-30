@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20220330201822",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "semen",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "receivedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "SemenStatus",
+      "fieldValues": "AVAILABLE,USED,ON_ROUTE"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Semen",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "semenDonor",
+      "otherEntityRelationshipName": "semen",
+      "relationshipName": "semenDonor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

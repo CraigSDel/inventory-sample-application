@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20220330201820",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "breed",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Breed",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "semenDonor",
+      "otherEntityRelationshipName": "breed",
+      "relationshipName": "semenDonor",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity SemenDonor.
+    -->
+    <changeSet id="20220330201821-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="farm_id"
+                                 baseTableName="semen_donor"
+                                 constraintName="fk_semen_donor__farm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="farm"/>
+
+        <addForeignKeyConstraint baseColumnNames="breed_id"
+                                 baseTableName="semen_donor"
+                                 constraintName="fk_semen_donor__breed_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="breed"/>
+    </changeSet>
+</databaseChangeLog>
